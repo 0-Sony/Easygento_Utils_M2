@@ -28,8 +28,7 @@ class CronRunner extends Command
      */
     public function __construct(
         State $state
-    )
-    {
+    ) {
         $this->state = $state;
         parent::__construct();
     }
@@ -54,8 +53,7 @@ class CronRunner extends Command
     protected function execute(
         InputInterface $input,
         OutputInterface $output
-    )
-    {
+    ) {
         try {
             $this->state->setAreaCode(Area::AREA_ADMINHTML);
         } catch (\Exception $e) {
