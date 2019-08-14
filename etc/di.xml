@@ -14,4 +14,19 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Easygento\Utils\Logger\Handler\Debug">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    
+    <type name="Easygento\Utils\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">easygentoLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Easygento\Utils\Logger\Handler\Debug</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
