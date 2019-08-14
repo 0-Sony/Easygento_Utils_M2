@@ -1,7 +1,7 @@
 <?php
 /**
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @author Phuong LE <sony@meincode.com> <@>
+ * @author Phuong LE <sony@menincode.com> <@>
  * @copyright Copyright (c) 2019 Menincode (http://www.menincode.com)
  */
 
@@ -10,10 +10,10 @@ namespace Easygento\Utils\Model;
 use Magento\Catalog\Api\AttributeSetManagementInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Api\AttributeGroupRepositoryInterface;
-use Magento\Eav\Setup\EavSetup;
-use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Eav\Api\Data\AttributeGroupInterfaceFactory;
 use Magento\Eav\Api\Data\AttributeSetInterfaceFactory;
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
 
 class ProductUtils
 {
@@ -50,8 +50,7 @@ class ProductUtils
         AttributeSetManagementInterface $attributeSetManagement,
         AttributeGroupInterfaceFactory $attributeGroupFactory,
         AttributeGroupRepositoryInterface $attributeGroupRepository
-    )
-    {
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->product = $product;
         $this->attributeSetFactory = $attributeSetInterfaceFactory;
@@ -82,7 +81,7 @@ class ProductUtils
                  * If our attribute set name does not exist, we create it.
                  * By default if Magento does not find an attribute set Id, it returns the default attribute set Id
                  */
-                if($attributeSetId == $eavSetup->getDefaultAttributeSetId($productEntity) && $data['attribute_set_name'] != 'Default') {
+                if ($attributeSetId == $eavSetup->getDefaultAttributeSetId($productEntity) && $data['attribute_set_name'] != 'Default') {
                     $attrSetName = $data['attribute_set_name'];
                     $this->createAttributeSet($attrSetName);
                     $attributeSetId = $eavSetup->getAttributeSetId($productEntity, $attrSetName);
@@ -99,7 +98,7 @@ class ProductUtils
                 /**
                  * If our attribute group name does not exist, we create it
                  */
-                if($attributeGroupId == $eavSetup->getDefaultAttributeGroupId($productEntity) && $data['attribute_group_name'] != 'General') {
+                if ($attributeGroupId == $eavSetup->getDefaultAttributeGroupId($productEntity) && $data['attribute_group_name'] != 'General') {
                     $attributeGroupName = $data['attribute_group_name'];
                     $this->createAttributeGroup($attributeGroupName, $attrSetName);
                     $attributeGroupId = $eavSetup->getAttributeGroupId($productEntity, $attributeSetId, $attributeGroupName);
@@ -177,7 +176,8 @@ class ProductUtils
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function createAttributeGroup($attributeGroupName, $attrSetName = null) {
+    public function createAttributeGroup($attributeGroupName, $attrSetName = null)
+    {
 
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create();
