@@ -4,7 +4,9 @@ Magento 2 Module with some tools to make dev life and debugging easier
 ## Cron Runner ###
 how to use :
 
-```bin/magento easygento:utils:cronrunner --cronClass="\My\CronClass\toRun"```
+```
+bin/magento easygento:utils:cronrunner --cronClass="\My\CronClass\toRun"
+```
 
 ## Custom Product Attribute Creator ###
 The class `ProductUtils` is useful to create simply and quickly your custom Product Attributes.
@@ -86,13 +88,21 @@ You can define your own log paths by using Virtual Type. See example in the `di.
 
 with composer : 
 
-```composer require easygento/magento2-utils:dev-master```
+```
+composer require easygento/magento2-utils:dev-master
+```
 
 without composer :
 
 ```You can download the latest release and put it in you app/code folder```
 
 Once the module installed , run the command 
-`bin/magento setup:upgrade` and  `bin/magento setup:di:compile`
+```
+bin/magento setup:upgrade
+```
+ and
+```
+bin/magento setup:di:compile
+```
 
 
