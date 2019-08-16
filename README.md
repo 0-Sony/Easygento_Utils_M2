@@ -1,12 +1,12 @@
 # Easygento_Utils_M2
 Magento 2 Module with some tools to make dev life and debugging easier
 
-### Cron Runner ###
-
+## Cron Runner ###
 how to use :
-bin/magento easygento:utils:cronrunner --cronClass="\My\CronClass\toRun"
 
-### Custom Product Attribute Creator ###
+```bin/magento easygento:utils:cronrunner --cronClass="\My\CronClass\toRun"```
+
+## Custom Product Attribute Creator ###
 The class `ProductUtils` is useful to create simply and quickly your custom Product Attributes.
 In your InstallData/ UpgradeData , call \Easygento\Utils\Model\ProductUtils as DI,
 and use public function inside. 
@@ -75,22 +75,24 @@ $attributes = [
 ];
 </code></pre>
 
-How to install this module ?
-
-with composer : 
-
-`composer require easygento/magento2-utils:dev-master`
-
-without composer :
-
-`You can download the latest release and put it in you app/code folder`
-
-Once the module installed , run the command 
-`bin/magento setup:upgrade` and  `bin/magento setup:di:compile`
-
-### Custom Logger ###
+## Custom Logger
 All you need to do is injected the class `\Easygento\Utils\Logger\Logger` in your class.
 Then you can use the default method as `debug() , info() ...`
 The log will be record in the default path `/var/log/easygento/debug.log`
 
 You can define your own log paths by using Virtual Type. See example in the `di.xml` file.
+
+## How to install this module ?
+
+with composer : 
+
+```composer require easygento/magento2-utils:dev-master```
+
+without composer :
+
+```You can download the latest release and put it in you app/code folder```
+
+Once the module installed , run the command 
+`bin/magento setup:upgrade` and  `bin/magento setup:di:compile`
+
+
