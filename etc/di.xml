@@ -7,7 +7,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Framework\Console\CommandListInterface">
+    <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="cron_runner" xsi:type="object">Easygento\Utils\Console\Command\CronRunner</item>
@@ -15,12 +15,14 @@
         </arguments>
     </type>
 
+    <!-- Easygento Handler, define the filesystem    -->
     <type name="Easygento\Utils\Logger\Handler\Debug">
         <arguments>
             <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
         </arguments>
     </type>
-    
+
+    <!-- Easygento Logger, we are using the default handler -->
     <type name="Easygento\Utils\Logger\Logger">
         <arguments>
             <argument name="name" xsi:type="string">easygentoLogger</argument>
@@ -29,4 +31,33 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- Example : Create a virtual Type in order to change the filename , change the behaviour of our handler-->
+    <virtualType name="MyCustomVirtualHandler" type="Easygento\Utils\Logger\Handler\Debug">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">var/log/yourcustompath/debug.log</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Example : Create a virtual Type in order to change the handler , that's will use the virtual type above -->
+    <virtualType name="MyCustomVirtualLogger" type="Easygento\Utils\Logger\Logger">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">MyCustomVirtualHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+        <!--
+        Use a class where Easygento logger class is injected, you can now put your own virtual Logger
+        "myCustomArgumentLogger" is the variable name of the argument for the  in your constructor
+
+        -->
+
+<!--    <type name="\Namespace\Module\Your\Class">-->
+<!--        <arguments>-->
+<!--            <argument name="myCustomArgumentLogger" xsi:type="object">MyCustomVirtualLogger</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
 </config>

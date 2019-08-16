@@ -87,3 +87,10 @@ without composer :
 
 Once the module installed , run the command 
 `bin/magento setup:upgrade` and  `bin/magento setup:di:compile`
+
+### Custom Logger ###
+All you need to do is injected the class `\Easygento\Utils\Logger\Logger` in your class.
+Then you can use the default method as `debug() , info() ...`
+The log will be record in the default path `/var/log/easygento/debug.log`
+
+You can define your own log paths by using Virtual Type. See example in the `di.xml` file.
